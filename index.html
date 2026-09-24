@@ -184,21 +184,35 @@
                 <form id="form-exam" class="space-y-6">
                     <div class="space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
                         <label class="block font-medium text-white text-xs sm:text-sm">
-                            <span class="text-amber-400 font-bold mr-1">01.</span> Bagaimana penggunaan teknologi komputer memberikan dampak positif dan negatif?
+                            <span class="text-amber-400 font-bold mr-1">01.</span> Bagaimana penggunaan teknologi komputer dalam kehidupan sehari-hari dapat memberikan dampak positif dan negatif terhadap masyarakat ?
                         </label>
                         <textarea id="q1" rows="4" placeholder="Tuliskan jawaban Anda..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg p-3 text-xs sm:text-sm text-gray-100 focus:outline-none"></textarea>
                     </div>
 
                     <div class="space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
                         <label class="block font-medium text-white text-xs sm:text-sm">
-                            <span class="text-amber-400 font-bold mr-1">02.</span> Bagaimana Society 5.0 memengaruhi interaksi sosial manusia?
+                            <span class="text-amber-400 font-bold mr-1">02.</span> Bagaimana Society 5.0 memengaruhi interaksi sosial dan kehidupan sehari-hari manusia ?
                         </label>
                         <textarea id="q2" rows="4" placeholder="Tuliskan jawaban Anda..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg p-3 text-xs sm:text-sm text-gray-100 focus:outline-none"></textarea>
                     </div>
 
                     <div class="space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
                         <label class="block font-medium text-white text-xs sm:text-sm">
-                            <span class="text-amber-400 font-bold mr-1">03.</span> Jelaskan peran pembelajaran Informatika dalam perkembangan teknologi!
+                            <span class="text-amber-400 font-bold mr-1">03.</span> Teknologi mengalami perkembangan pesat dari waktu ke waktu. Jelaskan peran pembelajaran Informatika dalam perkembangan tersebut !
+                        </label>
+                        <textarea id="q3" rows="4" placeholder="Tuliskan jawaban Anda..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg p-3 text-xs sm:text-sm text-gray-100 focus:outline-none"></textarea>
+                    </div>
+
+		<div class="space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                        <label class="block font-medium text-white text-xs sm:text-sm">
+                            <span class="text-amber-400 font-bold mr-1">03.</span> Pembelajaran Informatika dapat menggunakan metode plugged (dengan komputer) dan unplugged (tanpa komputer). Menurutmu, mengapa metode unplugged diperlukan ?
+                        </label>
+                        <textarea id="q3" rows="4" placeholder="Tuliskan jawaban Anda..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg p-3 text-xs sm:text-sm text-gray-100 focus:outline-none"></textarea>
+                    </div>
+
+		<div class="space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                        <label class="block font-medium text-white text-xs sm:text-sm">
+                            <span class="text-amber-400 font-bold mr-1">03.</span> Sejauh pemahaman dan keterampilan yang kamu pelajari hingga saat ini, apa yang terjadi jika kamu tidak mempelajari konsep Jaringan Komputer dan Internet dalam pembelajaran informatika ?
                         </label>
                         <textarea id="q3" rows="4" placeholder="Tuliskan jawaban Anda..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg p-3 text-xs sm:text-sm text-gray-100 focus:outline-none"></textarea>
                     </div>
@@ -298,6 +312,42 @@
         </div>
     </div>
 
+    <!-- MODAL POPUP LIHAT JAWABAN SISWA -->
+    <div id="modal-view-answer" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="cyber-card max-w-2xl w-full p-5 space-y-4 border-amber-500/50 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div>
+                    <h3 id="answer-modal-title" class="font-bold text-white text-base">Detail Jawaban Siswa</h3>
+                    <p id="answer-modal-subtitle" class="text-xs text-amber-400 font-mono"></p>
+                </div>
+                <button type="button" onclick="closeModal('modal-view-answer')" class="text-gray-400 hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4 text-xs">
+                <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                    <strong class="text-amber-400 block mb-1">Soal 1: Dampak Positif & Negatif Teknologi Komputer</strong>
+                    <div id="answer-modal-q1" class="text-gray-200 whitespace-pre-wrap font-sans bg-slate-950 p-2.5 rounded mt-1 border border-slate-800"></div>
+                </div>
+
+                <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                    <strong class="text-amber-400 block mb-1">Soal 2: Dampak Society 5.0 pada Interaksi Sosial</strong>
+                    <div id="answer-modal-q2" class="text-gray-200 whitespace-pre-wrap font-sans bg-slate-950 p-2.5 rounded mt-1 border border-slate-800"></div>
+                </div>
+
+                <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                    <strong class="text-amber-400 block mb-1">Soal 3: Peran Pembelajaran Informatika</strong>
+                    <div id="answer-modal-q3" class="text-gray-200 whitespace-pre-wrap font-sans bg-slate-950 p-2.5 rounded mt-1 border border-slate-800"></div>
+                </div>
+            </div>
+
+            <div class="flex justify-end pt-2 border-t border-slate-800">
+                <button type="button" onclick="closeModal('modal-view-answer')" class="px-4 py-2 rounded bg-amber-500 text-slate-950 font-bold text-xs">Tutup</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ENGINE SCRIPT REAL-TIME -->
     <script>
         // URL Realtime Database milik Anda
@@ -308,14 +358,17 @@
         let activeStudent = null;
         let tabViolationCount = 0;
         let examTimerInterval = null;
+        
+        // Menampung data jawaban siswa di memori agar aman dari karakter khusus
+        let currentSubmissionsData = {};
 
-        // FUNGSI UNTUK MODAL & NAVIGASI UI (Terpisah agar tombol selalu bekerja)
+        // FUNGSI UNTUK MODAL & NAVIGASI UI
         function openModal(id) { 
             const el = document.getElementById(id);
             if(el) {
                 el.classList.remove('hidden');
                 const inputPass = document.getElementById('input-teacher-pass');
-                if(inputPass) inputPass.focus();
+                if(inputPass && id === 'modal-teacher-auth') inputPass.focus();
             }
         }
 
@@ -361,8 +414,8 @@
 
                 // Listening Jawaban Siswa Masuk
                 db.ref('submissions').on('value', (snapshot) => {
-                    const data = snapshot.val() || {};
-                    const list = Object.values(data);
+                    currentSubmissionsData = snapshot.val() || {};
+                    const list = Object.values(currentSubmissionsData);
                     const subCount = document.getElementById('submitted-answers-count');
                     if(subCount) subCount.innerText = `${list.length} Jawaban`;
                     renderTeacherTable(list);
@@ -514,10 +567,27 @@
                     <td class="p-2.5 text-gray-400">${s.submittedAt}</td>
                     <td class="p-2.5 text-center font-mono ${s.violations > 0 ? 'text-red-400' : 'text-gray-400'}">${s.violations}</td>
                     <td class="p-2.5 text-center">
-                        <button type="button" onclick="alert('Soal 1: ${s.q1}\\n\\nSoal 2: ${s.q2}\\n\\nSoal 3: ${s.q3}')" class="px-2 py-1 bg-amber-500/20 text-amber-300 rounded text-xs cursor-pointer">Lihat Jawaban</button>
+                        <button type="button" onclick="showStudentAnswer('${s.id}')" class="px-2.5 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 rounded text-xs cursor-pointer border border-amber-500/30">
+                            <i class="fa-solid fa-eye mr-1"></i> Lihat Jawaban
+                        </button>
                     </td>
                 </tr>
             `).join('');
+        }
+
+        // FUNGSI BARU: MENAMPILKAN JAWABAN SISWA KE POPUP MODAL SECARA AMAN
+        function showStudentAnswer(studentId) {
+            const studentData = currentSubmissionsData[studentId];
+            if (!studentData) return alert("Data jawaban tidak ditemukan.");
+
+            document.getElementById('answer-modal-title').innerText = studentData.nama || "Siswa";
+            document.getElementById('answer-modal-subtitle').innerText = `Kelas: ${studentData.kelas || '-'} | Waktu Kirim: ${studentData.submittedAt || '-'}`;
+            
+            document.getElementById('answer-modal-q1').innerText = studentData.q1 || "(Kosong)";
+            document.getElementById('answer-modal-q2').innerText = studentData.q2 || "(Kosong)";
+            document.getElementById('answer-modal-q3').innerText = studentData.q3 || "(Kosong)";
+
+            openModal('modal-view-answer');
         }
     </script>
 </body>
