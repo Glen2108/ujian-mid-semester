@@ -9,7 +9,7 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains-Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     
     <!-- Firebase SDK Compat -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
@@ -81,7 +81,7 @@
                 </div>
             </div>
             <!-- Tombol Portal Guru -->
-            <button type="button" onclick="openModal('modal-teacher-auth')" class="text-xs text-amber-400 hover:text-amber-200 underline shrink-0 font-mono flex items-center gap-1 pl-2 cursor-pointer">
+            <button type="button" onclick="openModal('modal-teacher-auth')" class="text-xs text-amber-400 hover:text-amber-200 underline shrink-0 font-mono flex items-center gap-1 pl-2 cursor-pointer z-50">
                 <i class="fa-solid fa-lock text-[10px]"></i> Portal Guru
             </button>
         </div>
@@ -238,7 +238,7 @@
 
                     <!-- TOMBOL UTAMA KONTROL TERPUSAT -->
                     <div class="flex items-center gap-3">
-                        <button id="btn-toggle-exam" onclick="toggleGlobalExamState()" class="px-5 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm transition flex items-center gap-2 shadow-lg cursor-pointer bg-emerald-500 text-slate-950 hover:bg-emerald-400">
+                        <button id="btn-toggle-exam" type="button" onclick="toggleGlobalExamState()" class="px-5 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm transition flex items-center gap-2 shadow-lg cursor-pointer bg-emerald-500 text-slate-950 hover:bg-emerald-400">
                             <i class="fa-solid fa-play"></i> MULAI UJIAN DI SERENTAK SEMUA HP SISWA
                         </button>
                     </div>
@@ -251,7 +251,7 @@
                     </div>
                     <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
                         <span class="text-gray-400 block">Sistem Server:</span>
-                        <strong class="text-cyan-400 text-sm">Firebase Cloud Active</strong>
+                        <strong class="text-cyan-400 text-sm">Firebase Cloud Connected</strong>
                     </div>
                     <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
                         <span class="text-gray-400 block">Jawaban Masuk:</span>
@@ -290,7 +290,7 @@
     <div id="modal-teacher-auth" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="cyber-card max-w-sm w-full p-5 space-y-4 border-amber-500/50 shadow-2xl">
             <h3 class="font-bold text-white text-sm">Password Guru</h3>
-            <input type="password" id="input-teacher-pass" placeholder="Masukkan password" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none">
+            <input type="password" id="input-teacher-pass" placeholder="Masukkan password" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none" onkeypress="if(event.key==='Enter') authenticateTeacher()">
             <div class="flex justify-end gap-2">
                 <button type="button" onclick="closeModal('modal-teacher-auth')" class="px-3 py-1.5 rounded bg-slate-800 text-xs text-gray-300">Batal</button>
                 <button type="button" onclick="authenticateTeacher()" class="px-3 py-1.5 rounded bg-amber-500 text-slate-950 font-bold text-xs">Masuk</button>
@@ -300,8 +300,8 @@
 
     <!-- ENGINE SCRIPT REAL-TIME -->
     <script>
-        // MASUKKAN URL DATABASE FIREBASE ANDA DI SINI
-        const FIREBASE_DB_URL = https://ujian-mid-semester-informatika-default-rtdb.firebaseio.com;
+        // URL Realtime Database milik Anda
+        const FIREBASE_DB_URL = "https://ujian-mid-semester-informatika-default-rtdb.firebaseio.com/";
 
         let db = null;
         let isExamStartedGlobal = false;
@@ -309,10 +309,14 @@
         let tabViolationCount = 0;
         let examTimerInterval = null;
 
-        // FUNGSI DASAR UNTUK MODAL & VIEW (Tetap bekerja meskipun Firebase belum siap)
+        // FUNGSI UNTUK MODAL & NAVIGASI UI (Terpisah agar tombol selalu bekerja)
         function openModal(id) { 
             const el = document.getElementById(id);
-            if(el) el.classList.remove('hidden'); 
+            if(el) {
+                el.classList.remove('hidden');
+                const inputPass = document.getElementById('input-teacher-pass');
+                if(inputPass) inputPass.focus();
+            }
         }
 
         function closeModal(id) { 
@@ -339,22 +343,23 @@
 
         function initFirebase() {
             try {
-                // Inisialisasi Firebase App
                 if (!firebase.apps.length) {
                     firebase.initializeApp({
-                        apiKey: "dummy-key",
                         databaseURL: FIREBASE_DB_URL
                     });
                 }
                 db = firebase.database();
 
-                // Listening Status Ujian Terpusat
+                // Deteksi Perubahan Status Ujian Terpusat secara Live
                 db.ref('exam_status/isStarted').on('value', (snapshot) => {
                     isExamStartedGlobal = snapshot.val() === true;
                     updateExamUIState();
+                }, (error) => {
+                    console.error("Database Permission Error:", error);
+                    alert("PENTING: Mohon pastikan aturan (Rules) Realtime Database di Firebase Console sudah diubah ke read: true, write: true.");
                 });
 
-                // Listening Jawaban Siswa
+                // Listening Jawaban Siswa Masuk
                 db.ref('submissions').on('value', (snapshot) => {
                     const data = snapshot.val() || {};
                     const list = Object.values(data);
@@ -410,7 +415,7 @@
         }
 
         function toggleGlobalExamState() {
-            if (!db) return alert("Firebase belum terkoneksi!");
+            if (!db) return alert("Firebase belum terhubung. Periksa koneksi internet Anda.");
             db.ref('exam_status/isStarted').set(!isExamStartedGlobal);
         }
 
@@ -490,7 +495,7 @@
                 closeModal('modal-teacher-auth');
                 showView('view-teacher');
             } else {
-                alert("Password Salah!");
+                alert("Password Salah! Masukkan: admin123");
             }
         }
 
