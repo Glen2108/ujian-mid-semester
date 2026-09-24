@@ -9,9 +9,9 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains-Mono:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Firebase SDK Modules (Real-time Engine) -->
+    <!-- Firebase SDK Compat -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
@@ -80,7 +80,8 @@
                     </div>
                 </div>
             </div>
-            <button onclick="openModal('modal-teacher-auth')" class="text-xs text-amber-400 hover:text-amber-200 underline shrink-0 font-mono flex items-center gap-1 pl-2">
+            <!-- Tombol Portal Guru -->
+            <button type="button" onclick="openModal('modal-teacher-auth')" class="text-xs text-amber-400 hover:text-amber-200 underline shrink-0 font-mono flex items-center gap-1 pl-2 cursor-pointer">
                 <i class="fa-solid fa-lock text-[10px]"></i> Portal Guru
             </button>
         </div>
@@ -100,7 +101,7 @@
             </div>
             <div class="flex items-center gap-2">
                 <span id="global-status-badge" class="px-3 py-1 rounded-full text-xs font-bold font-mono bg-red-950 text-red-400 border border-red-500/40 flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></i> UJIAN BELUM DIMULAI
+                    <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> UJIAN BELUM DIMULAI
                 </span>
             </div>
         </div>
@@ -240,9 +241,6 @@
                         <button id="btn-toggle-exam" onclick="toggleGlobalExamState()" class="px-5 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm transition flex items-center gap-2 shadow-lg cursor-pointer bg-emerald-500 text-slate-950 hover:bg-emerald-400">
                             <i class="fa-solid fa-play"></i> MULAI UJIAN DI SERENTAK SEMUA HP SISWA
                         </button>
-                        <button onclick="openConfigModal()" class="px-3 py-2.5 rounded-xl bg-slate-800 text-amber-400 border border-amber-500/30 text-xs font-bold">
-                            <i class="fa-solid fa-gear"></i> Config
-                        </button>
                     </div>
                 </div>
 
@@ -252,8 +250,8 @@
                         <strong id="teacher-status-text" class="text-red-400 text-sm">BELUM DIMULAI</strong>
                     </div>
                     <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
-                        <span class="text-gray-400 block">Siswa Terkoneksi:</span>
-                        <strong id="connected-students-count" class="text-cyan-400 text-sm">0 Siswa</strong>
+                        <span class="text-gray-400 block">Sistem Server:</span>
+                        <strong class="text-cyan-400 text-sm">Firebase Cloud Active</strong>
                     </div>
                     <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
                         <span class="text-gray-400 block">Jawaban Masuk:</span>
@@ -292,30 +290,18 @@
     <div id="modal-teacher-auth" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="cyber-card max-w-sm w-full p-5 space-y-4 border-amber-500/50 shadow-2xl">
             <h3 class="font-bold text-white text-sm">Password Guru</h3>
-            <input type="password" id="input-teacher-pass" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none">
+            <input type="password" id="input-teacher-pass" placeholder="Masukkan password" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none">
             <div class="flex justify-end gap-2">
-                <button onclick="closeModal('modal-teacher-auth')" class="px-3 py-1.5 rounded bg-slate-800 text-xs text-gray-300">Batal</button>
-                <button onclick="authenticateTeacher()" class="px-3 py-1.5 rounded bg-amber-500 text-slate-950 font-bold text-xs">Masuk</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL CONFIG FIREBASE -->
-    <div id="modal-config-cloud" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="cyber-card max-w-md w-full p-5 space-y-4 border-cyan-500/50 shadow-2xl">
-            <h3 class="font-bold text-white text-sm border-b border-slate-800 pb-2">Setup Firebase Database URL</h3>
-            <p class="text-xs text-gray-400">Masukkan URL Realtime Database Firebase Anda di bawah ini agar sinkronisasi serentak aktif.</p>
-            <input type="url" id="input-firebase-url" placeholder="https://PROJECT_NAME.firebaseio.com" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-xs text-white focus:outline-none font-mono">
-            <div class="flex justify-end gap-2">
-                <button onclick="closeModal('modal-config-cloud')" class="px-3 py-1.5 rounded bg-slate-800 text-xs text-gray-300">Batal</button>
-                <button onclick="saveFirebaseConfig()" class="px-3 py-1.5 rounded bg-cyan-500 text-slate-950 font-bold text-xs">Simpan Firebase</button>
+                <button type="button" onclick="closeModal('modal-teacher-auth')" class="px-3 py-1.5 rounded bg-slate-800 text-xs text-gray-300">Batal</button>
+                <button type="button" onclick="authenticateTeacher()" class="px-3 py-1.5 rounded bg-amber-500 text-slate-950 font-bold text-xs">Masuk</button>
             </div>
         </div>
     </div>
 
     <!-- ENGINE SCRIPT REAL-TIME -->
     <script>
-        const DEFAULT_FIREBASE_URL = https://ujian-mid-semester-informatika-default-rtdb.firebaseio.com/; // Gantilah dengan URL Database Anda
+        // MASUKKAN URL DATABASE FIREBASE ANDA DI SINI
+        const FIREBASE_DB_URL = "https://ujian-informatika-default-rtdb.firebaseio.com/";
 
         let db = null;
         let isExamStartedGlobal = false;
@@ -323,44 +309,75 @@
         let tabViolationCount = 0;
         let examTimerInterval = null;
 
+        // FUNGSI DASAR UNTUK MODAL & VIEW (Tetap bekerja meskipun Firebase belum siap)
+        function openModal(id) { 
+            const el = document.getElementById(id);
+            if(el) el.classList.remove('hidden'); 
+        }
+
+        function closeModal(id) { 
+            const el = document.getElementById(id);
+            if(el) el.classList.add('hidden'); 
+        }
+
+        function showView(id) {
+            ['view-login', 'view-exam', 'view-success', 'view-teacher'].forEach(v => {
+                const el = document.getElementById(v);
+                if(el) el.classList.add('hidden');
+            });
+            const target = document.getElementById(id);
+            if(target) target.classList.remove('hidden');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('input-tanggal').valueAsDate = new Date();
+            const inputTanggal = document.getElementById('input-tanggal');
+            if(inputTanggal) inputTanggal.valueAsDate = new Date();
+
             initFirebase();
             document.addEventListener("visibilitychange", handleVisibilityChange);
         });
 
         function initFirebase() {
-            const dbUrl = localStorage.getItem('sys_firebase_url') || DEFAULT_FIREBASE_URL;
-            
-            if (!firebase.apps.length) {
-                firebase.initializeApp({ databaseURL: dbUrl });
+            try {
+                // Inisialisasi Firebase App
+                if (!firebase.apps.length) {
+                    firebase.initializeApp({
+                        apiKey: "dummy-key",
+                        databaseURL: FIREBASE_DB_URL
+                    });
+                }
+                db = firebase.database();
+
+                // Listening Status Ujian Terpusat
+                db.ref('exam_status/isStarted').on('value', (snapshot) => {
+                    isExamStartedGlobal = snapshot.val() === true;
+                    updateExamUIState();
+                });
+
+                // Listening Jawaban Siswa
+                db.ref('submissions').on('value', (snapshot) => {
+                    const data = snapshot.val() || {};
+                    const list = Object.values(data);
+                    const subCount = document.getElementById('submitted-answers-count');
+                    if(subCount) subCount.innerText = `${list.length} Jawaban`;
+                    renderTeacherTable(list);
+                });
+
+            } catch (err) {
+                console.error("Firebase Initialization Error: ", err);
             }
-            db = firebase.database();
-
-            // MENDENGARKAN PERUBAHAN STATUS UJIAN SECARA LIVE DI SEMUA PERANGKAT
-            db.ref('exam_status/isStarted').on('value', (snapshot) => {
-                isExamStartedGlobal = snapshot.val() === true;
-                updateExamUIState();
-            });
-
-            // MENDENGARKAN JAWABAN SISWA YANG MASUK secara LIVE DI PORTAL GURU
-            db.ref('submissions').on('value', (snapshot) => {
-                const data = snapshot.val() || {};
-                const list = Object.values(data);
-                document.getElementById('submitted-answers-count').innerText = `${list.length} Jawaban`;
-                renderTeacherTable(list);
-            });
         }
 
-        // UPDATE UI TAMPILAN SESUAI PERUBAHAN TERPUSAT
         function updateExamUIState() {
             const badge = document.getElementById('global-status-badge');
             const teacherBtn = document.getElementById('btn-toggle-exam');
             const teacherText = document.getElementById('teacher-status-text');
 
             if (isExamStartedGlobal) {
-                badge.className = "px-3 py-1 rounded-full text-xs font-bold font-mono bg-emerald-950 text-emerald-400 border border-emerald-500/40 flex items-center gap-1.5";
-                badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> UJIAN SEDANG BERLANGSUNG`;
+                if(badge) {
+                    badge.className = "px-3 py-1 rounded-full text-xs font-bold font-mono bg-emerald-950 text-emerald-400 border border-emerald-500/40 flex items-center gap-1.5";
+                    badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> UJIAN SEDANG BERLANGSUNG`;
+                }
 
                 if (teacherBtn) {
                     teacherBtn.className = "px-5 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm bg-red-600 hover:bg-red-500 text-white shadow-lg cursor-pointer";
@@ -371,14 +388,15 @@
                     teacherText.className = "text-emerald-400 text-sm";
                 }
 
-                // JIKA SISWA SUDAH REGISTRASI & UJIAN DIMULAI GURU -> OTOMATIS BUKA HALAMAN SOAL
                 if (activeStudent && document.getElementById('view-exam').classList.contains('hidden')) {
                     showView('view-exam');
                     startTimer();
                 }
             } else {
-                badge.className = "px-3 py-1 rounded-full text-xs font-bold font-mono bg-red-950 text-red-400 border border-red-500/40 flex items-center gap-1.5";
-                badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> UJIAN BELUM DIMULAI`;
+                if(badge) {
+                    badge.className = "px-3 py-1 rounded-full text-xs font-bold font-mono bg-red-950 text-red-400 border border-red-500/40 flex items-center gap-1.5";
+                    badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> UJIAN BELUM DIMULAI`;
+                }
 
                 if (teacherBtn) {
                     teacherBtn.className = "px-5 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-lg cursor-pointer";
@@ -391,13 +409,11 @@
             }
         }
 
-        // FUNGSI GURU MEMUTUSKAN STATUS UJIAN DIMULAI/DIHENTIKAN
         function toggleGlobalExamState() {
-            if (!db) return;
+            if (!db) return alert("Firebase belum terkoneksi!");
             db.ref('exam_status/isStarted').set(!isExamStartedGlobal);
         }
 
-        // SISWA MENDAFTAR
         function handleStudentRegister(e) {
             e.preventDefault();
             const nama = document.getElementById('input-nama').value.trim();
@@ -412,7 +428,6 @@
             document.getElementById('btn-register-student').classList.add('hidden');
             document.getElementById('waiting-room-box').classList.remove('hidden');
 
-            // Jika status ujian ternyata sudah dimulai sebelum siswa masuk, langsung alihkan ke soal
             if (isExamStartedGlobal) {
                 showView('view-exam');
                 startTimer();
@@ -425,7 +440,8 @@
                 sec--;
                 const m = Math.floor(sec / 60);
                 const s = sec % 60;
-                document.getElementById('timer-display').innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+                const display = document.getElementById('timer-display');
+                if(display) display.innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
                 if (sec <= 0) {
                     clearInterval(examTimerInterval);
                     executeFinalSubmission();
@@ -436,7 +452,8 @@
         function handleVisibilityChange() {
             if (!document.getElementById('view-exam').classList.contains('hidden') && document.hidden) {
                 tabViolationCount++;
-                document.getElementById('violation-count').innerText = `${tabViolationCount}/3`;
+                const countEl = document.getElementById('violation-count');
+                if(countEl) countEl.innerText = `${tabViolationCount}/3`;
                 if (tabViolationCount >= 3) {
                     alert("Pelanggaran batas pindah tab tercapai! Jawaban Anda otomatis terkirim.");
                     executeFinalSubmission();
@@ -446,7 +463,6 @@
             }
         }
 
-        // EKSEKUSI SUBMIT JAWABAN SISWA KE FIREBASE
         async function executeFinalSubmission() {
             clearInterval(examTimerInterval);
 
@@ -462,15 +478,15 @@
                 q3: document.getElementById('q3').value
             };
 
-            // Simpan ke Realtime Database secara instan
-            await db.ref(`submissions/${activeStudent.id}`).set(payload);
-
+            if(db) {
+                await db.ref(`submissions/${activeStudent.id}`).set(payload);
+            }
             showView('view-success');
         }
 
-        // PANEL GURU
         function authenticateTeacher() {
-            if (document.getElementById('input-teacher-pass').value === "admin123") {
+            const pass = document.getElementById('input-teacher-pass').value;
+            if (pass === "admin123") {
                 closeModal('modal-teacher-auth');
                 showView('view-teacher');
             } else {
@@ -480,6 +496,8 @@
 
         function renderTeacherTable(data) {
             const tbody = document.getElementById('teacher-submissions-list');
+            if(!tbody) return;
+
             if (data.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-500 italic">Belum ada jawaban masuk.</td></tr>`;
                 return;
@@ -491,27 +509,11 @@
                     <td class="p-2.5 text-gray-400">${s.submittedAt}</td>
                     <td class="p-2.5 text-center font-mono ${s.violations > 0 ? 'text-red-400' : 'text-gray-400'}">${s.violations}</td>
                     <td class="p-2.5 text-center">
-                        <button onclick="alert('Soal 1: ${s.q1}\\n\\nSoal 2: ${s.q2}\\n\\nSoal 3: ${s.q3}')" class="px-2 py-1 bg-amber-500/20 text-amber-300 rounded text-xs">Lihat Jawaban</button>
+                        <button type="button" onclick="alert('Soal 1: ${s.q1}\\n\\nSoal 2: ${s.q2}\\n\\nSoal 3: ${s.q3}')" class="px-2 py-1 bg-amber-500/20 text-amber-300 rounded text-xs cursor-pointer">Lihat Jawaban</button>
                     </td>
                 </tr>
             `).join('');
         }
-
-        function saveFirebaseConfig() {
-            const url = document.getElementById('input-firebase-url').value.trim();
-            if (url) {
-                localStorage.setItem('sys_firebase_url', url);
-                alert("Firebase URL Berhasil Diperbarui!");
-                location.reload();
-            }
-        }
-
-        function showView(id) {
-            ['view-login', 'view-exam', 'view-success', 'view-teacher'].forEach(v => document.getElementById(v).classList.add('hidden'));
-            document.getElementById(id).classList.remove('hidden');
-        }
-        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
     </script>
 </body>
 </html>
