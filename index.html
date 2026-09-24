@@ -179,42 +179,42 @@
                 </div>
             </div>
 
-            <!-- Form Soal Essay -->
+            <!-- Form Soal Essay (5 Soal Terbaru) -->
             <div class="cyber-card p-4 sm:p-6 space-y-6">
                 <form id="form-exam" class="space-y-6">
                     <div class="space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
-                        <label class="block font-medium text-white text-xs sm:text-sm">
+                        <label class="block font-medium text-white text-xs sm:text-sm leading-relaxed">
                             <span class="text-amber-400 font-bold mr-1">01.</span> Bagaimana penggunaan teknologi komputer dalam kehidupan sehari-hari dapat memberikan dampak positif dan negatif terhadap masyarakat ?
                         </label>
                         <textarea id="q1" rows="4" placeholder="Tuliskan jawaban Anda..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg p-3 text-xs sm:text-sm text-gray-100 focus:outline-none"></textarea>
                     </div>
 
                     <div class="space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
-                        <label class="block font-medium text-white text-xs sm:text-sm">
+                        <label class="block font-medium text-white text-xs sm:text-sm leading-relaxed">
                             <span class="text-amber-400 font-bold mr-1">02.</span> Bagaimana Society 5.0 memengaruhi interaksi sosial dan kehidupan sehari-hari manusia ?
                         </label>
                         <textarea id="q2" rows="4" placeholder="Tuliskan jawaban Anda..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg p-3 text-xs sm:text-sm text-gray-100 focus:outline-none"></textarea>
                     </div>
 
                     <div class="space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
-                        <label class="block font-medium text-white text-xs sm:text-sm">
+                        <label class="block font-medium text-white text-xs sm:text-sm leading-relaxed">
                             <span class="text-amber-400 font-bold mr-1">03.</span> Teknologi mengalami perkembangan pesat dari waktu ke waktu. Jelaskan peran pembelajaran Informatika dalam perkembangan tersebut !
                         </label>
                         <textarea id="q3" rows="4" placeholder="Tuliskan jawaban Anda..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg p-3 text-xs sm:text-sm text-gray-100 focus:outline-none"></textarea>
                     </div>
 
-		<div class="space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
-                        <label class="block font-medium text-white text-xs sm:text-sm">
+                    <div class="space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                        <label class="block font-medium text-white text-xs sm:text-sm leading-relaxed">
                             <span class="text-amber-400 font-bold mr-1">04.</span> Pembelajaran Informatika dapat menggunakan metode plugged (dengan komputer) dan unplugged (tanpa komputer). Menurutmu, mengapa metode unplugged diperlukan ?
                         </label>
-                        <textarea id="q3" rows="4" placeholder="Tuliskan jawaban Anda..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg p-3 text-xs sm:text-sm text-gray-100 focus:outline-none"></textarea>
+                        <textarea id="q4" rows="4" placeholder="Tuliskan jawaban Anda..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg p-3 text-xs sm:text-sm text-gray-100 focus:outline-none"></textarea>
                     </div>
 
-		<div class="space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
-                        <label class="block font-medium text-white text-xs sm:text-sm">
-                            <span class="text-amber-400 font-bold mr-1">05.</span> Sejauh pemahaman dan keterampilan yang kamu pelajari hingga saat ini, apa yang terjadi jika kamu tidak mempelajari konsep Jaringan Komputer dan Internet dalam pembelajaran informatika ?
+                    <div class="space-y-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                        <label class="block font-medium text-white text-xs sm:text-sm leading-relaxed">
+                            <span class="text-amber-400 font-bold mr-1">05.</span> Sejauh pemahaman dan keterampilan yang kamu pelajari hingga saat ini, apa yang terjadi jika kamu tidak mempelajari konsep Jaringan Komputer dan Internet dalam pembelajaran Informatika ?
                         </label>
-                        <textarea id="q3" rows="4" placeholder="Tuliskan jawaban Anda..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg p-3 text-xs sm:text-sm text-gray-100 focus:outline-none"></textarea>
+                        <textarea id="q5" rows="4" placeholder="Tuliskan jawaban Anda..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-lg p-3 text-xs sm:text-sm text-gray-100 focus:outline-none"></textarea>
                     </div>
 
                     <div class="pt-2 flex items-center justify-between border-t border-slate-800">
@@ -312,7 +312,7 @@
         </div>
     </div>
 
-    <!-- MODAL POPUP LIHAT JAWABAN SISWA -->
+    <!-- MODAL POPUP LIHAT JAWABAN SISWA (5 SOAL) -->
     <div id="modal-view-answer" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="cyber-card max-w-2xl w-full p-5 space-y-4 border-amber-500/50 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -341,15 +341,14 @@
                     <div id="answer-modal-q3" class="text-gray-200 whitespace-pre-wrap font-sans bg-slate-950 p-2.5 rounded mt-1 border border-slate-800"></div>
                 </div>
 
-		<div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
-                    <strong class="text-amber-400 block mb-1">Soal 4: Metode Pembelajaran Informatika</strong>
-                    <div id="answer-modal-q3" class="text-gray-200 whitespace-pre-wrap font-sans bg-slate-950 p-2.5 rounded mt-1 border border-slate-800"></div>
+                <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                    <strong class="text-amber-400 block mb-1">Soal 4: Keperluan Metode Unplugged</strong>
+                    <div id="answer-modal-q4" class="text-gray-200 whitespace-pre-wrap font-sans bg-slate-950 p-2.5 rounded mt-1 border border-slate-800"></div>
                 </div>
-            </div>
 
-<div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
-                    <strong class="text-amber-400 block mb-1">Soal 5: Pemahaman Pembelajaran Informatika</strong>
-                    <div id="answer-modal-q3" class="text-gray-200 whitespace-pre-wrap font-sans bg-slate-950 p-2.5 rounded mt-1 border border-slate-800"></div>
+                <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                    <strong class="text-amber-400 block mb-1">Soal 5: Konsekuensi Tidak Mempelajari Jaringan Komputer & Internet</strong>
+                    <div id="answer-modal-q5" class="text-gray-200 whitespace-pre-wrap font-sans bg-slate-950 p-2.5 rounded mt-1 border border-slate-800"></div>
                 </div>
             </div>
 
@@ -544,7 +543,9 @@
                 violations: tabViolationCount,
                 q1: document.getElementById('q1').value,
                 q2: document.getElementById('q2').value,
-                q3: document.getElementById('q3').value
+                q3: document.getElementById('q3').value,
+                q4: document.getElementById('q4').value,
+                q5: document.getElementById('q5').value
             };
 
             if(db) {
@@ -586,7 +587,7 @@
             `).join('');
         }
 
-        // FUNGSI BARU: MENAMPILKAN JAWABAN SISWA KE POPUP MODAL SECARA AMAN
+        // FUNGSI MENAMPILKAN JAWABAN SISWA KE POPUP MODAL (5 SOAL)
         function showStudentAnswer(studentId) {
             const studentData = currentSubmissionsData[studentId];
             if (!studentData) return alert("Data jawaban tidak ditemukan.");
@@ -597,6 +598,8 @@
             document.getElementById('answer-modal-q1').innerText = studentData.q1 || "(Kosong)";
             document.getElementById('answer-modal-q2').innerText = studentData.q2 || "(Kosong)";
             document.getElementById('answer-modal-q3').innerText = studentData.q3 || "(Kosong)";
+            document.getElementById('answer-modal-q4').innerText = studentData.q4 || "(Kosong)";
+            document.getElementById('answer-modal-q5').innerText = studentData.q5 || "(Kosong)";
 
             openModal('modal-view-answer');
         }
